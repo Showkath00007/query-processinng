@@ -1,0 +1,11 @@
+import matplotlib.pyplot as plt
+close_prices = df_stock['Close']
+trading_volume = df_stock['Volume']
+plt.figure(figsize=(12, 7))
+plt.scatter(trading_volume, close_prices, color='purple', alpha=0.6)
+plt.title(f'Alphabet Inc. ({ticker_symbol}) Stock Price vs. Trading Volume ({start_date} to {end_date})')
+plt.xlabel('Trading Volume')
+plt.ylabel('Close Price (USD)')
+plt.grid(True)
+plt.tight_layout()
+plt.show()
