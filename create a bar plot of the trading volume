@@ -1,0 +1,11 @@
+import matplotlib.pyplot as plt
+plt.figure(figsize=(14, 7))
+volume_data = df_stock[('Volume', ticker_symbol)].values
+plt.bar(range(len(df_stock)), volume_data, color='green', width=0.8)
+plt.xticks(range(len(df_stock)), [date.strftime('%Y-%m-%d') for date in df_stock.index], rotation=45, ha='right')
+plt.title(f'Alphabet Inc. ({ticker_symbol}) Stock Trading Volume ({start_date} to {end_date})')
+plt.xlabel('Date')
+plt.ylabel('Trading Volume')
+plt.grid(axis='y', linestyle='--')
+plt.tight_layout()
+plt.show()
