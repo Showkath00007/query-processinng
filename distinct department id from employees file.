@@ -1,0 +1,41 @@
+import pandas as pd
+import io
+
+data = """DEPARTMENT_ID | DEPARTMENT_NAME      | MANAGER_ID | LOCATION_ID
+            10 | Administration       |        200 |        1700
+            20 | Marketing            |        201 |        1800
+            30 | Purchasing           |        114 |        1700
+            40 | Human Resources      |        203 |        2400
+            50 | Shipping             |        121 |        1500
+            60 | IT                   |        103 |        1400
+            70 | Public Relations     |        204 |        2700
+            80 | Sales                |        145 |        2500
+            90 | Executive            |        100 |        1700
+           100 | Finance              |        108 |        1700
+           110 | Accounting           |        205 |        1700
+           120 | Treasury             |          0 |        1700
+           130 | Corporate Tax        |          0 |        1700
+           140 | Control And Credit   |          0 |        1700
+           150 | Shareholder Services |          0 |        1700
+           160 | Benefits             |          0 |        1700
+           170 | Manufacturing        |          0 |        1700
+           180 | Construction         |          0 |        1700
+           190 | Contracting          |          0 |        1700
+           200 | Operations           |          0 |        1700
+           210 | IT Support           |          0 |        1700
+           220 | NOC                  |          0 |        1700
+           230 | IT Helpdesk          |          0 |        1700
+           240 | Government Sales     |          0 |        1700
+           250 | Retail Sales         |          0 |        1700"""
+
+df = pd.read_csv(io.StringIO(data), sep='|', skipinitialspace=True)
+df.columns = [col.strip() for col in df.columns]
+df = df[df['DEPARTMENT_ID'].apply(lambda x: x.isdigit() if isinstance(x, str) else True)]
+df['DEPARTMENT_ID'] = pd.to_numeric(df['DEPARTMENT_ID'], errors='coerce')
+df = df.dropna(subset=['DEPARTMENT_ID'])
+df['DEPARTMENT_ID'] = df['DEPARTMENT_ID'].astype(int)
+distinct_department_ids = df['DEPARTMENT_ID'].unique()
+
+print("Distinct Department IDs:")
+for dept_id in distinct_department_ids:
+    print(dept_id)
