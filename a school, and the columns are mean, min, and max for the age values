@@ -1,0 +1,11 @@
+import pandas as pd
+
+data = {
+    'school': ['s001', 's002', 's003', 's001', 's002', 's004'],
+    'age': [12, 12, 13, 13, 14, 12]
+}
+
+df = pd.DataFrame(data)
+
+result = df.groupby('school')['age'].agg(['mean', 'min', 'max'])
+print(result)
