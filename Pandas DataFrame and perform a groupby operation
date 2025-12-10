@@ -1,0 +1,14 @@
+import pandas as pd
+
+df = pd.DataFrame({
+    'school': ['s001', 's002', 's003', 's001', 's002', 's004'],
+    'class': ['V', 'V', 'VI', 'VI', 'VI', 'VI'],
+    'name': ['Alberto Franco', 'Gino Mcneill', 'Ryan Parkes', 'Eesha Hinton', 'Gino Mcneill', 'David Parkes'],
+    'age': [12, 12, 13, 13, 14, 12]
+})
+
+g = df.groupby('school')
+for key, group in g:
+    print("\nGroup:", key)
+    print(group)
+print("\nType of GroupBy object:", type(g))
