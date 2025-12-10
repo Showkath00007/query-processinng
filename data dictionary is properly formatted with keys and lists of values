@@ -1,0 +1,15 @@
+import pandas as pd
+
+data = {
+    'school': ['s001', 's002', 's003', 's001', 's002', 's004'],
+    'class': ['V', 'V', 'VI', 'VI', 'V', 'VI'],
+    'name': ['Alberto', 'Gino', 'Ryan', 'Eesha', 'Gino', 'David']
+}
+
+df = pd.DataFrame(data)
+
+groups = df.groupby(['school', 'class'])
+
+for key, group in groups:
+    print("\nGroup:", key)
+    print(group)
